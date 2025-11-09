@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Qelvin's Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
@@ -15,95 +16,364 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.9);
             color: white;
             display: flex;
-            justify-content: center;
-            gap: 2rem;
-            padding: 1rem;
+            justify-content: space-between;
+            padding: 1.2rem 4rem;
             z-index: 10;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            position: absolute;
+            left: 4rem;
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00aaff, #00ff88);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradient 3s ease infinite;
+        }
+
+        .nav-links {
+            flex: 1;
+            display: flex;
+            justify-content: center; /* Center the links */
+            gap: 3rem;
+            align-items: center;
+            
         }
 
         nav a {
             color: white;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
         }
 
+        nav a:hover {
+            background: linear-gradient(45deg, #00aaff, #00ff88);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(45deg, #00aaff, #00ff88);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* updated hero to use a background image with dark overlay for readability */
         .hero {
             height: 100vh;
-            background: linear-gradient(to right, #111, #333);
+            background: url('static/img/HeroSectionImage.jpg') no-repeat center center/cover;
             color: white;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 20px;
+            align-items: flex-start; /* Change from center to flex-start */
+            text-align: left; /* Change from center to left */
+            padding: 0 5%; /* Add specific padding instead of equal padding */
+            position: relative;
+        }
+
+        /* dark overlay */
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.45);
+            z-index: 0;
+        }
+
+        /* ensure hero content sits above the overlay */
+        .hero * {
+            position: relative;
+            z-index: 1;
         }
 
         .hero h1 {
             font-size: 3rem;
             margin-bottom: 10px;
+            text-align: left;
+            max-width: 600px; /* Limit text width for better readability */
         }
 
         .hero h2 {
             font-weight: 400;
             font-size: 1.5rem;
-            color: #aaa;
+            color: #ddd;
             margin-bottom: 20px;
+            text-align: left;
+            max-width: 600px; /* Limit text width for better readability */
         }
 
+        /* Replace the existing .hero button styles with these */
         .hero button {
-            background-color: #00aaff;
+            background: linear-gradient(45deg, #00aaff, #00ff88);
             color: white;
             border: none;
-            padding: 12px 24px;
+            padding: 15px 30px;
             border-radius: 8px;
-            font-size: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: 0.3s;
+            transition: all 0.3s ease;
+            align-self: flex-start;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(0, 170, 255, 0.3);
         }
 
         .hero button:hover {
-            background-color: #0088cc;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 170, 255, 0.4);
+            background: linear-gradient(45deg, #00ff88, #00aaff);
+        }
+
+        .hero button:active {
+            transform: translateY(1px);
         }
 
         section {
             padding: 100px 20px;
             min-height: 100vh;
         }
+
+        /* remove the previous inline image styling (if still present) */
+        .hero-portrait { display: none; }
+
+        /* Add this to group the navigation links */
+        nav > div:last-child {
+            display: flex;
+            gap: 2rem;
+        }
+
+        /* About section styles */
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .about-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .skills {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tags span {
+            background: rgba(0, 170, 255, 0.1);
+            color: #00aaff;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* New styles for the updated About section */
+        .about-section {
+            background: #f9f9f9;
+            padding: 80px 20px;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .about-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* New styles for organizations and affiliations */
+        .affiliations-section {
+            margin-top: 2rem;
+        }
+
+        .affiliations-section h3 {
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem;
+            background: linear-gradient(45deg, #00aaff, #00ff88);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .org-logos, .school-logos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 2rem;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .org-logo {
+            max-width: 120px;
+            height: auto;
+            transition: all 0.3s ease;
+            filter: grayscale(100%);
+            opacity: 0.7;
+        }
+
+        .org-logo:hover {
+            transform: translateY(-5px);
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .about-content {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .about-text, .skills {
+                flex: none;
+                width: 100%;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero h2 {
+                font-size: 1.2rem;
+            }
+
+            .org-logos, .school-logos {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
     </style>
 </head>
 <body>
     <nav>
-        <a href="#hero">Home</a>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
+        <div class="logo">Qelvin's Portfolio</div>
+        <div class="nav-links">
+            <a href="#hero">Home</a>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </div>
     </nav>
 
     <section id="hero" class="hero">
-        <h1>Hi, I’m Qelvin Nagales</h1>
-        <h2>IT Student • Web Developer • Problem Solver</h2>
-        <button onclick="document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });">
-            View My Work
-        </button>
+        <div class="hero-content">
+            <h1>Hi, I'm Qelvin Nagales</h1>
+            <h2>Crafting Digital Experiences</h2>
+            <p class="hero-description">IT Student • Full Stack Developer • UI/UX Enthusiast</p>
+            <button class="custom-button" onclick="document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })">
+                Explore My Work
+            </button>
+        </div>
     </section>
 
-    <section id="about">
-        <h1>About Me</h1>
-        <p>I’m a passionate developer who loves creating modern, efficient, and creative projects.</p>
+    <section id="about" class="about-section">
+        <div class="about-container">
+            <span class="section-subtitle">ABOUT ME</span>
+            <h2 class="section-title">Turning Vision Into Reality</h2>
+            <p class="about-description">
+                As a passionate IT student and developer, I combine creativity with technical expertise 
+                to build meaningful digital solutions. My journey is driven by continuous learning and 
+                the pursuit of excellence in web development and design.
+            </p>
+
+            <div class="affiliations-section">
+                <h3>Organizations & Affiliations</h3>
+                <div class="org-logos">
+                    <img src="static/img/MSC Logo.png" alt="MSC" class="org-logo">
+                    <img src="static/img/APC SOAR_LOGO (1).png" alt="SOAR" class="org-logo">
+                    <img src="static/img/APC Band Logo Black.png" alt="APC Band" class="org-logo">
+                    <img src="static/img/Gaming Genesis Logo Colored .png" alt="GG" class="org-logo">
+                    <img src="static/img/JPCS-APC (5).png" alt="JPCS" class="org-logo">
+                    <img src="static/img/JISSA SOCMED NEW LOGO (1).png" alt="JISSA" class="org-logo">
+                    
+                    
+                </div>
+
+                <h3>School</h3>
+                <div class="school-logos">
+                    <img src="static/img/APC_Seal (Official).png" alt="Asia Pacific College" class="org-logo">
+                    <img src="static/img/APC School Logos (Blue)_SoCIT-01.png" alt="School of Computing and Information Technologies" class="org-logo">
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section id="projects">
-        <h1>Projects</h1>
-        <p>Here are some of my works.</p>
+    <section id="projects" class="projects-section">
+        <div class="container">
+            <span class="section-subtitle">MY WORK</span>
+            <h2 class="section-title">Featured Projects</h2>
+            <p class="section-description">
+                Explore a collection of my recent works showcasing my skills in web development,
+                design, and problem-solving.
+            </p>
+            <!-- ...existing projects content... -->
+        </div>
     </section>
 
-    <section id="contact">
-        <h1>Contact</h1>
-        <p>Email: qelvinnagales@example.com</p>
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <span class="section-subtitle">GET IN TOUCH</span>
+            <h2 class="section-title">Let's Work Together</h2>
+            <p class="section-description">
+                Interested in collaborating or have a project in mind? 
+                I'd love to hear from you.
+            </p>
+            <!-- ...existing contact content... -->
+        </div>
     </section>
 </body>
 </html>
